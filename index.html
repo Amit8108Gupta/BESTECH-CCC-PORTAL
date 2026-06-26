@@ -1,39 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#800000">
+
 <title>BESTECH COMPUTER EDUCATION & LEARNING LIBRARY</title>
 
-<link rel="stylesheet" href="style.css">
+<meta name="description"
+content="BESTECH CCC Online Examination Portal">
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
 
 </head>
 
 <body>
 
-<div class="container">
+<div class="login-container">
 
-<img src="logo.png" class="logo">
+<div class="login-card">
 
-<h1>BESTECH COMPUTER EDUCATION</h1>
+<img
+src="images/logo.png"
+class="logo"
+alt="BESTECH Logo">
 
-<h2>& LEARNING LIBRARY</h2>
+<h1>
+BESTECH COMPUTER EDUCATION
+</h1>
 
-<h3>CCC ONLINE MOCK TEST</h3>
+<h2>
+& LEARNING LIBRARY
+</h2>
 
-<input type="text" id="name" placeholder="Student Name">
+<p class="portal-title">
+CCC ONLINE EXAM PORTAL
+</p>
 
-<input type="text" id="mobile" placeholder="Mobile Number">
+<form id="loginForm">
 
-<input type="text" id="batch" placeholder="Batch">
+<div class="form-group">
 
-<button id="startBtn">
-Start Test
-</button>
+<label>
+Student Name
+</label>
+
+<input
+type="text"
+id="name"
+placeholder="Enter Student Name"
+required>
 
 </div>
 
-<script src="script.js"></script>
+<div class="form-group">
+
+<label>
+Mobile Number
+</label>
+
+<input
+type="tel"
+id="mobile"
+maxlength="10"
+placeholder="Enter Mobile Number"
+required>
+
+</div>
+<div class="form-group">
+
+<label>
+Batch
+</label>
+
+<select id="batch" required>
+
+<option value="">
+Select Batch
+</option>
+
+<option value="Morning">
+Morning
+</option>
+
+<option value="Evening">
+Evening
+</option>
+
+<option value="Weekend">
+Weekend
+</option>
+
+<option value="Fast Track">
+Fast Track
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Select Test
+</label>
+
+<select id="testCode" required>
+
+<option value="">
+Select Test
+</option>
+
+<option value="CCC-001">
+CCC Mock Test 001
+</option>
+
+<option value="CCC-002">
+CCC Mock Test 002
+</option>
+
+<option value="CCC-003">
+CCC Mock Test 003
+</option>
+
+</select>
+
+</div>
+
+<div class="instruction-box">
+
+<label class="checkbox">
+
+<input
+type="checkbox"
+id="agree">
+
+<span>
+
+I have read all instructions and agree to follow the examination rules.
+
+</span>
+
+</label>
+
+</div>
+
+<button
+type="submit"
+id="startBtn">
+
+START TEST
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+<div id="loadingScreen" class="loading-screen" style="display:none;">
+    <div class="loader"></div>
+    <p>Please wait...</p>
+    <small>Connecting to BESTECH Exam Server</small>
+</div>
+
+<footer class="footer">
+    <p>© 2026 BESTECH COMPUTER EDUCATION & LEARNING LIBRARY</p>
+    <p>CCC Online Examination Portal v1.0</p>
+</footer>
+
+<script src="js/login.js"></script>
 
 </body>
 </html>

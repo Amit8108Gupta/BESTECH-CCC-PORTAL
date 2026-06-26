@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCC Online Exam</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+.topbar{
+display:flex;
+justify-content:space-between;
+padding:15px;
+background:#800000;
+color:white;
+font-size:18px;
+font-weight:bold;
+}
+
+#questionBox{
+background:white;
+padding:20px;
+margin:15px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+
+.option{
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:8px;
+cursor:pointer;
+}
+
+.option:hover{
+background:#f5f5f5;
+}
+
+.nextBtn{
+width:100%;
+padding:15px;
+background:#800000;
+color:white;
+border:none;
+font-size:18px;
+border-radius:8px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="topbar">
+
+<div>
+👤 <span id="studentName"></span>
+</div>
+
+<div>
+⏱ <span id="timer">90:00</span>
+</div>
+
+</div>
+
+<div id="questionBox">
+
+<h2>Question 1 / 100</h2>
+
+<p>CPU का मुख्य कार्य क्या है?</p>
+
+<div class="option">
+<input type="radio" name="q1">
+डेटा प्रोसेस करना
+</div>
+
+<div class="option">
+<input type="radio" name="q1">
+डेटा स्टोर करना
+</div>
+
+<div class="option">
+<input type="radio" name="q1">
+डेटा प्रिंट करना
+</div>
+
+<div class="option">
+<input type="radio" name="q1">
+डेटा स्कैन करना
+</div>
+
+</div>
+
+<button class="nextBtn">
+Next Question →
+</button>
+
+<script>
+document.getElementById("studentName").innerHTML =
+localStorage.getItem("studentName");
+</script>
+<script src="questions.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

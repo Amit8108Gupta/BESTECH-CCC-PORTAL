@@ -156,3 +156,135 @@ document
     }
 
 });
+// ======================================
+// Question Palette
+// ======================================
+
+function createPalette() {
+
+    const palette = document.getElementById("palette");
+    palette.innerHTML = "";
+
+    questions.forEach((q, index) => {
+
+        const btn = document.createElement("button");
+
+        btn.textContent = index + 1;
+
+        btn.onclick = function () {
+
+            currentQuestion = index;
+            showQuestion();
+
+        };
+
+        palette.appendChild(btn);
+
+    });
+
+}
+
+function updatePalette() {
+
+    const buttons = document
+        .getElementById("palette")
+        .querySelectorAll("button");
+
+    buttons.forEach((btn, index) => {
+
+        btn.classList.remove("current", "answered");
+
+        if (index === currentQuestion) {
+            btn.classList.add("current");
+        }
+
+        if (answers[questions[index].id]) {
+            btn.classList.add("answered");
+        }
+
+    });
+
+}
+
+// ======================================
+// Progress Bar
+// ======================================
+
+function updateProgress() {
+
+    const answered = Object.keys(answers).length;
+
+    const percent = (answered / questions.length) * 100;
+
+    document.getElementById("progressBar").style.width =
+        percent + "%";
+
+}
+
+// ======================================
+// Submit Test
+// ======================================
+
+document.getElementById("submitBtn")
+.addEventListener("click", submitExam);
+
+async function submitExam() {
+
+    if (!confirm("Are you sure you want to submit the test?")) {
+        return;
+    }
+
+    let score = 0;
+
+    questions.forEach(q => {
+
+        if (answers[q.id] === q.answer) {
+            score++;
+        }
+
+    });
+
+    try {
+
+        const response = await fetch(API_URL, {
+
+            method: "POST",
+
+            body: JSON.stringify({
+
+                action: "submitResult",
+
+                name: student.name,
+
+                mobile: student.mobile,
+
+                batch: student.batch,
+
+                testCode: student.testCode,
+
+                score: score,
+
+                total: questions.length
+
+            })
+
+        });
+
+        const result = await response.json();
+
+        localStorage.setItem("score", score);
+        localStorage.setItem("total", questions.length);
+        localStorage.setItem("percentage", result.percentage);
+        localStorage.setItem("result", result.result);
+
+        window.location.href = "result.html";
+
+    } catch (err) {
+
+        alert("Result submit failed.");
+
+        console.log(err);
+
+    }
+
+}

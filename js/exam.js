@@ -59,3 +59,100 @@ async function loadQuestions(){
     }
 
 }
+// ======================================
+// Display Question
+// ======================================
+
+function showQuestion() {
+
+    if (questions.length === 0) return;
+
+    const q = questions[currentQuestion];
+
+    document.getElementById("questionNumber").textContent =
+        `Question ${currentQuestion + 1} of ${questions.length}`;
+
+    document.getElementById("questionText").textContent =
+        q.question;
+
+    document.getElementById("optA").textContent = q.options[0];
+    document.getElementById("optB").textContent = q.options[1];
+    document.getElementById("optC").textContent = q.options[2];
+    document.getElementById("optD").textContent = q.options[3];
+
+    document.querySelectorAll("input[name='answer']")
+        .forEach(r => r.checked = false);
+
+    if (answers[q.id]) {
+
+        document.querySelector(
+            `input[name="answer"][value="${answers[q.id]}"]`
+        ).checked = true;
+
+    }
+
+    updatePalette();
+
+    updateProgress();
+
+}
+
+
+// ======================================
+// Save Answer
+// ======================================
+
+document.querySelectorAll("input[name='answer']")
+.forEach(radio => {
+
+    radio.addEventListener("change", function(){
+
+        answers[
+            questions[currentQuestion].id
+        ] = this.value;
+
+        updatePalette();
+
+        updateProgress();
+
+    });
+
+});
+
+
+// ======================================
+// Next
+// ======================================
+
+document
+.getElementById("nextBtn")
+.addEventListener("click",()=>{
+
+    if(currentQuestion < questions.length-1){
+
+        currentQuestion++;
+
+        showQuestion();
+
+    }
+
+});
+
+
+// ======================================
+// Previous
+// ======================================
+
+document
+.getElementById("prevBtn")
+.addEventListener("click",()=>{
+
+    if(currentQuestion>0){
+
+        currentQuestion--;
+
+        showQuestion();
+
+    }
+
+});

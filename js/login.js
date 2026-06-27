@@ -53,4 +53,50 @@ async function startLogin() {
 
     checkAttempts(name, mobile, batch, testCode);
 
+}// ===============================
+// BESTECH Login Part 2
+// ===============================
+
+async function checkAttempts(name, mobile, batch, testCode) {
+
+    try {
+
+        const response = await fetch(API_URL, {
+            method: "POST",
+            body: JSON.stringify({
+                action: "login",
+                name: name,
+                mobile: mobile,
+                batch: batch,
+                testCode: testCode
+            })
+        });
+
+        const result = await response.json();
+
+        loading.style.display = "none";
+
+        if (result.status === "success") {
+
+            localStorage.setItem("studentId", result.studentId);
+            localStorage.setItem("attempt", result.attempt);
+
+            window.location.href = "exam.html";
+
+        } else {
+
+            alert(result.message);
+
+        }
+
+    } catch (e) {
+
+        loading.style.display = "none";
+
+        alert("Unable to connect to server.\nPlease try again.");
+
+        console.log(e);
+
+    }
+
 }

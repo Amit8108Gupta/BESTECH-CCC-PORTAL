@@ -229,17 +229,20 @@ function updateProgress() {
 
 document.getElementById("submitBtn")
 .addEventListener("click", submitExam);
-const unanswered = questions.length - Object.keys(answers).length;
 
-if (unanswered > 0) {
-
-    if (!confirm(`You have ${unanswered} unanswered question(s).\nDo you still want to submit?`)) {
-        return;
-    }
-
-}
 async function submitExam() {
 
+    const unanswered = questions.length - Object.keys(answers).length;
+
+    if (unanswered > 0) {
+
+        if (!confirm(`You have ${unanswered} unanswered question(s).\nDo you still want to submit?`)) {
+            return;
+        }
+
+    }
+
+   
     if (!confirm("Are you sure you want to submit the test?")) {
         return;
     }

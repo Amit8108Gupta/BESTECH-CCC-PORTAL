@@ -22,15 +22,15 @@ document.getElementById("testCode").textContent = student.testCode;
 
 window.onload = loadQuestions;
 
-async function loadQuestions(){
+async function loadQuestions() {
 
-    try{
+    try {
 
-        const response = await fetch(API_URL,{
-            method:"POST",
-            body:JSON.stringify({
-                action:"getQuestions",
-                testCode:student.testCode
+        const response = await fetch(API_URL, {
+            method: "POST",
+            body: JSON.stringify({
+                action: "getQuestions",
+                testCode: student.testCode
             })
         });
 
@@ -38,23 +38,21 @@ async function loadQuestions(){
 
         console.log(result);
 
-        if(result.success){
+        if (result.success) {
 
             questions = result.questions;
-
-            alert("Questions = " + questions.length);
 
             createPalette();
 
             showQuestion();
 
-        }else{
+        } else {
 
             alert(result.message);
 
         }
 
-    }catch(err){
+    } catch (err) {
 
         alert("Unable to load questions.");
 

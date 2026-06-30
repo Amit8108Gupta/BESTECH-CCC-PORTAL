@@ -40,17 +40,19 @@ alert(JSON.stringify(result));
 
         if(result.success){
 
-            questions = result.questions;
+    alert("Questions Loaded: " + result.questions.length);
 
-            createPalette();
+    questions = result.questions;
 
-            showQuestion();
+    createPalette();
 
-        }else{
+    showQuestion();
 
-            alert(result.message);
+}else{
 
-        }
+    alert(result.message);
+
+}
 
     }catch(err){
 

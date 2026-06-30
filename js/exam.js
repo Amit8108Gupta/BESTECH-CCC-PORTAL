@@ -34,30 +34,25 @@ async function loadQuestions(){
             })
         });
 
-       
-       
-
         const result = await response.json();
 
-console.log(result);
+        console.log(result);
 
-if(result.success){
+        if(result.success){
 
-    questions = result.questions;
+            questions = result.questions;
 
-    alert("Questions = " + questions.length);
+            alert("Questions = " + questions.length);
 
-    createPalette();
+            createPalette();
 
-    showQuestion();
+            showQuestion();
 
-}else{
+        }else{
 
-    alert(result.message);
+            alert(result.message);
 
-}
-
-}
+        }
 
     }catch(err){
 

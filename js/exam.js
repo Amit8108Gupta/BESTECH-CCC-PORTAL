@@ -23,7 +23,7 @@ document.getElementById("testCode").textContent = student.testCode;
 window.onload = loadQuestions;
 
 async function loadQuestions(){
-
+alert("Sending TestCode: " + student.testCode);
     try{
 
         const response = await fetch(API_URL,{

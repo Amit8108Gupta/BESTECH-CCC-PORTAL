@@ -51,7 +51,7 @@ localStorage.removeItem("result");
         alert("Please accept exam instructions.");
         return;
     }
-// Reset Previous Exam Data
+// Reset Previous Exam
 localStorage.removeItem("timeLeft");
 localStorage.removeItem("examCompleted");
 localStorage.removeItem("score");
@@ -59,7 +59,7 @@ localStorage.removeItem("total");
 localStorage.removeItem("percentage");
 localStorage.removeItem("result");
 
-// New Exam Timer (60 Minutes)
+// Start New 60 Minute Timer
 localStorage.setItem("timeLeft", 60 * 60);
     loading.style.display = "flex";
 

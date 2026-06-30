@@ -5,10 +5,11 @@
 
 const EXAM_TIME = 60 * 60; // 60 Minutes
 
-let timeLeft = Number(localStorage.getItem("timeLeft"));
+let timeLeft = parseInt(localStorage.getItem("timeLeft"), 10);
 
-if (!timeLeft || timeLeft <= 0) {
+if (isNaN(timeLeft) || timeLeft <= 0) {
     timeLeft = EXAM_TIME;
+    localStorage.setItem("timeLeft", timeLeft);
 }
 
 const timerElement = document.getElementById("timer");

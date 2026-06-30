@@ -57,10 +57,6 @@ if(result.success){
 
 }
 
-}else{
-
-    alert(result.message);
-
 }
 
     }catch(err){

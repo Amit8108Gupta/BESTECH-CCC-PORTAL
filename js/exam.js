@@ -34,7 +34,7 @@ async function loadQuestions(){
             })
         });
 
-        const result = await response.json();
+       
        
 
         const result = await response.json();

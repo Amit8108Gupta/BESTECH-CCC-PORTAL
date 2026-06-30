@@ -20,6 +20,7 @@ localStorage.removeItem("total");
 localStorage.removeItem("percentage");
 localStorage.removeItem("result");
 
+
     const name = document.getElementById("name").value.trim();
     const mobile = document.getElementById("mobile").value.trim();
     const batch = document.getElementById("batch").value;
@@ -50,7 +51,16 @@ localStorage.removeItem("result");
         alert("Please accept exam instructions.");
         return;
     }
+// Reset Previous Exam Data
+localStorage.removeItem("timeLeft");
+localStorage.removeItem("examCompleted");
+localStorage.removeItem("score");
+localStorage.removeItem("total");
+localStorage.removeItem("percentage");
+localStorage.removeItem("result");
 
+// New Exam Timer (60 Minutes)
+localStorage.setItem("timeLeft", 60 * 60);
     loading.style.display = "flex";
 
     localStorage.setItem("studentName", name);

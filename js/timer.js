@@ -3,7 +3,7 @@
 // Version 1.0
 // ======================================
 
-const EXAM_TIME = 90 * 60; // 90 Minutes
+const EXAM_TIME = 60 * 60; // 60 Minutes
 
 let timeLeft = Number(localStorage.getItem("timeLeft"));
 

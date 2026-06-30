@@ -64,7 +64,7 @@ async function checkAttempts(name, mobile, batch, testCode) {
         const response = await fetch(API_URL, {
             method: "POST",
             body: JSON.stringify({
-                action: "login",
+                action: "studentLogin",
                 name: name,
                 mobile: mobile,
                 batch: batch,
@@ -76,12 +76,15 @@ async function checkAttempts(name, mobile, batch, testCode) {
 
         loading.style.display = "none";
 
-        if (result.status === "success") {
+        if (result.success) {
 
             localStorage.setItem("studentId", result.studentId);
-            localStorage.setItem("attempt", result.attempt);
+localStorage.setItem("attempts", result.attempts);
+localStorage.setItem("studentName", result.name);
+localStorage.setItem("studentBatch", result.batch);
+localStorage.setItem("testCode", result.testCode);
 
-            window.location.href = "exam.html";
+window.location.href = "exam.html";
 
         } else {
 

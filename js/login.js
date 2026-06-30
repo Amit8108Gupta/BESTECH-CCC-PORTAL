@@ -12,6 +12,13 @@ const loading = document.getElementById("loadingScreen");
 startBtn.addEventListener("click", startLogin);
 
 async function startLogin() {
+    // Reset Previous Exam
+localStorage.removeItem("timeLeft");
+localStorage.removeItem("examCompleted");
+localStorage.removeItem("score");
+localStorage.removeItem("total");
+localStorage.removeItem("percentage");
+localStorage.removeItem("result");
 
     const name = document.getElementById("name").value.trim();
     const mobile = document.getElementById("mobile").value.trim();

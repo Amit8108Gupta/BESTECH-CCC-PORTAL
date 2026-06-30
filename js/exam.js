@@ -37,15 +37,25 @@ async function loadQuestions(){
         const result = await response.json();
        
 
-        if(result.success){
+        const result = await response.json();
 
-    
+console.log(result);
+
+if(result.success){
 
     questions = result.questions;
+
+    alert("Questions = " + questions.length);
 
     createPalette();
 
     showQuestion();
+
+}else{
+
+    alert(result.message);
+
+}
 
 }else{
 

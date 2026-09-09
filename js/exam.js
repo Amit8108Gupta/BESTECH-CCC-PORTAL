@@ -312,7 +312,7 @@ async function submitExam() {
         localStorage.setItem("total", questions.length);
         localStorage.setItem("percentage", result.percentage);
         localStorage.setItem("result", result.result);
-
+        localStorage.setItem("timeTaken", timeTaken);
         // Clear timer after successful submission
         localStorage.removeItem("timeLeft");
 

@@ -236,13 +236,14 @@ async function submitExam() {
 
     if (unanswered > 0) {
 
-        if (!confirm(`You have ${unanswered} unanswered question(s).\nDo you still want to submit?`)) {
+        if (!confirm(
+            `You have ${unanswered} unanswered question(s).\nDo you still want to submit?`
+        )) {
             return;
         }
 
     }
 
-   
     if (!confirm("Are you sure you want to submit the test?")) {
         return;
     }
@@ -257,6 +258,30 @@ async function submitExam() {
 
     });
 
+    // Calculate Time Taken
+    const EXAM_TIME = 60 * 60;
+
+    let remainingTime = parseInt(
+        localStorage.getItem("timeLeft"),
+        10
+    );
+
+    if (isNaN(remainingTime) || remainingTime < 0) {
+        remainingTime = 0;
+    }
+
+    let timeTakenSeconds = EXAM_TIME - remainingTime;
+
+    if (timeTakenSeconds < 0) {
+        timeTakenSeconds = 0;
+    }
+
+    const takenMinutes = Math.floor(timeTakenSeconds / 60);
+    const takenSeconds = timeTakenSeconds % 60;
+
+    const timeTaken =
+        `${takenMinutes} Minutes ${takenSeconds} Seconds`;
+
     try {
 
         const response = await fetch(API_URL, {
@@ -268,16 +293,14 @@ async function submitExam() {
                 action: "submitResult",
 
                 name: student.name,
-
                 mobile: student.mobile,
-
                 batch: student.batch,
-
                 testCode: student.testCode,
 
                 score: score,
+                total: questions.length,
 
-                total: questions.length
+                timeTaken: timeTaken
 
             })
 
@@ -289,6 +312,9 @@ async function submitExam() {
         localStorage.setItem("total", questions.length);
         localStorage.setItem("percentage", result.percentage);
         localStorage.setItem("result", result.result);
+
+        // Clear timer after successful submission
+        localStorage.removeItem("timeLeft");
 
         window.location.href = "result.html";
 
